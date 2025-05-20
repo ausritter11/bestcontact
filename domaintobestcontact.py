@@ -53,7 +53,7 @@ def find_linkedin_profile(query, company=False, index=1):
             return urls[index - 1]
         else:
             return None
-    except Exception as e:
+    except Exception:
         return None
 
 def get_best_contacts(domain):
@@ -84,9 +84,11 @@ def get_best_contacts(domain):
                     "title": title,
                     "linkedin": linkedin or "Not found"
                 })
+            if not results:
+                return [{"domain": domain, "name": "", "title": "", "linkedin": "Not found"}]
             return results
         return [{"domain": domain, "name": "", "title": "", "linkedin": "Not found"}]
-    except Exception as e:
+    except Exception:
         return [{"domain": domain, "name": "", "title": "", "linkedin": "Error"}]
 
 if st.button("Find Contacts"):
@@ -103,16 +105,15 @@ if st.button("Find Contacts"):
                 time.sleep(1)
 
         st.success("Done! Here are the results:")
-for r in results:
-    st.write(f"Website: {r['domain']}")
-    if r['name'] and r['title']:
-        st.write(f"Best Contact: {r['name']}")
-        st.write(f"Title: {r['title']}")
-        if r['linkedin'] and r['linkedin'] not in ["Not found", "Error"]:
-            st.write(f"LinkedIn: {r['linkedin']}")
-        else:
-            st.write("LinkedIn: Not found")
-    else:
-        st.write("No contact found.")
-    st.markdown("---")
-
+        for r in results:
+            st.write(f"Website: {r['domain']}")
+            if r['name'] and r['title']:
+                st.write(f"Best Contact: {r['name']}")
+                st.write(f"Title: {r['title']}")
+                if r['linkedin'] and r['linkedin'] not in ["Not found", "Error"]:
+                    st.write(f"LinkedIn: {r['linkedin']}")
+                else:
+                    st.write("LinkedIn: Not found")
+            else:
+                st.write("No contact found.")
+            st.markdown("---")

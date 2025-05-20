@@ -103,7 +103,7 @@ if st.button("Find Contacts"):
                 time.sleep(1)
 
         st.success("Done! Here are the results:")
-        for r in results:
+for r in results:
     st.write(f"Website: {r['domain']}")
     if r['name'] and r['title']:
         st.write(f"Best Contact: {r['name']}")
@@ -115,3 +115,4 @@ if st.button("Find Contacts"):
     else:
         st.write("No contact found.")
     st.markdown("---")
+

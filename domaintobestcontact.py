@@ -104,8 +104,14 @@ if st.button("Find Contacts"):
 
         st.success("Done! Here are the results:")
         for r in results:
-            st.write(f"Website: {r['domain']}")
-            st.write(f"Best Contact: {r['name']}")
-            st.write(f"Title: {r['title']}")
+    st.write(f"Website: {r['domain']}")
+    if r['name'] and r['title']:
+        st.write(f"Best Contact: {r['name']}")
+        st.write(f"Title: {r['title']}")
+        if r['linkedin'] and r['linkedin'] not in ["Not found", "Error"]:
             st.write(f"LinkedIn: {r['linkedin']}")
-            st.markdown("---")
+        else:
+            st.write("LinkedIn: Not found")
+    else:
+        st.write("No contact found.")
+    st.markdown("---")

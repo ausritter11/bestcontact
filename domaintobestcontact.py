@@ -3,7 +3,7 @@ import requests
 import time
 
 # Apollo API Config
-APOLLO_API_KEY = "j8O04kuJrcqHGXETikf5LA"
+APOLLO_API_KEY = "3E1Uz3fL0Vhw4U1Xz4aW8g
 APOLLO_URL = "https://api.apollo.io/api/v1/mixed_people/search"
 
 # Google Custom Search Config
